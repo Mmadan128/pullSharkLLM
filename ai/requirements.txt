@@ -1,0 +1,1 @@
+pathway google-generativeai supabase python-dotenv requests pandas
