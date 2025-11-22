@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  multimodal_rag:
+    build: .
+    container_name: multimodal_rag
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - pathway_engine
+
+  pathway_engine:
+    image: pathwaycom/pathway:latest
+    container_name: pathway_engine
+    command: ["sleep", "infinity"]   # so it stays running
+    volumes:
+      - ./ingestion:/app/ingestion
+      - ./data:/app/data
+    env_file:
+      - .env
